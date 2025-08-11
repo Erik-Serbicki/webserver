@@ -1,15 +1,9 @@
-- hosts: all
+- hosts: localhost
   become: true
-  pre_tasks:
-    - name: pre-run | update package cache (ubuntu)
-      tags: always
-      apt: update_cache=yes
-      changed_when: False
-
-- hosts: all
-  become: true
+  tags: always
   tasks:
     - name: install apache
       tags: apache
-      apt:
-        - apache2
+      apt: 
+        name: apache2
+        state: latest
